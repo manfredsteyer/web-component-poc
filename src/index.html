@@ -8,6 +8,68 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
-  <app-root></app-root>
+
+  <my-web-component id="myWebComponent" info="Hallo Welt"></my-web-component>
+
+  <script>
+    const elm = document.getElementById('myWebComponent');
+    elm.addEventListener('info-change', function(e) {
+      console.debug('info-change', e);
+    });
+    elm.addEventListener('infoChange', function(e) {
+      console.debug('infoChange', e);
+    });
+  </script>
+
+
+<!-- Comment this out, *if* using differential loading or es2015 as a target in Angular 8+ -->
+<!-- <script src="./assets/webcomponentsjs/custom-elements-es5-adapter.js"></script> -->
+
+
+
+
+  <!-- Here, all the shared code is imported -->
+  <!-- consider creating one or several bundles -->
+  <!-- for those -->
+
+  <!-- core-js for legacy browsers 
+        Consider only loading for IE
+  -->
+  <script src="./assets/core-js/core.js"></script>
+
+  <!-- 
+        Web Component polyfills
+  -->
+  <script src="/assets/webcomponentsjs/bundles/webcomponents-sd-ce.js"></script>
+
+  <!-- Zone.js 
+        Consider excluding zone.js when creating
+        custom Elements by using the noop zone.
+
+        If you load zone.js with an additional 
+        bundle, delete this line.
+  -->
+  <script src="./assets/zone.js/zone.js"></script>
+
+  <!-- TODO: Add further needed polyfills here ... -->
+
+  <!-- Rx -->
+  <script src="./assets/rxjs/rxjs.umd.js"></script>
+
+  <!-- Angular Packages -->
+  <script src="./assets/core/bundles/core.umd.js"></script>
+  <script src="./assets/common/bundles/common.umd.js"></script>
+  <script src="./assets/common/bundles/common-http.umd.js"></script>
+  <script src="./assets/elements/bundles/elements.umd.js"></script>
+
+  <script src="./assets/forms/bundles/forms.umd.js"></script>
+  <script src="./assets/router/bundles/router.umd.js"></script>
+
+  <!-- TODO: Add further needed Angular libs here ... -->
+
+  <!-- Just needed for prod mode -->
+  <script src="./assets/platform-browser/bundles/platform-browser.umd.js"></script>
+
+
 </body>
 </html>
